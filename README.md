@@ -1,7 +1,6 @@
 # TinyC Compiler
 
 A compiler front end for **TinyC**, a small subset of C, written in Java.
-Built in the *Programming 2* course at Saarland University (summer 2024).
 
 ## What it does
 
@@ -41,3 +40,7 @@ scripts/tinycc <file.c>
 ## Tech
 
 Java, compiler construction (parsing, ASTs, scopes and declaration checks), MIPS assembly
+
+---
+
+<sub>Originally written as a university course project (2024).</sub>

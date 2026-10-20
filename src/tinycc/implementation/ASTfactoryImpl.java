@@ -93,12 +93,10 @@ public class ASTfactoryImpl implements ASTFactory {
     }
     @Override
     public Statement createBreakStatement(Locatable loc) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createBreakStatement'");
     }
     @Override
     public Statement createContinueStatement(Locatable loc) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createContinueStatement'");
     }
     @Override
@@ -119,7 +117,6 @@ public class ASTfactoryImpl implements ASTFactory {
     @Override
     public Expression createConditionalExpression(Token token, Expression condition, Expression consequence,
             Expression alternative) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createConditionalExpression'");
     }
 
