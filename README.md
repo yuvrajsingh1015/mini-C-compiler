@@ -1,36 +1,43 @@
-TinyC Compiler in Java
+# TinyC Compiler
 
-Tinhy is a lightweight C compiler developed as part of the Saarland University Programming 2 course for the Summer Term 2024. The project aims to create a minimalistic yet functional C compiler that can parse, analyze, and generate code for a subset of the C programming language. The compiler is designed to be simple and educational, making it an ideal tool for learning the fundamentals of compiler design and implementation.
+A compiler front end for **TinyC**, a small subset of C, written in Java.
+Built in the *Programming 2* course at Saarland University (summer 2024).
 
-Project Overview
+## What it does
 
-TinyC is a simplified version of the C programming language, retaining much of C's syntax and semantics while omitting more complex features. This project is divided into three main phases:
+- **Parsing to an AST:** the course-provided parser calls my `ASTFactory`
+  implementation, which builds a typed abstract syntax tree of expressions,
+  statements, types, function definitions and global declarations.
+- **Semantic analysis:** checks that variables and functions are declared before
+  use, rejects duplicate declarations and `void` variables, tracks nested scopes (global, function, block) and reports errors through
+  the diagnostics module.
+- **MIPS code generation:** started, not finished. `CodeGenerator` emits globals
+  and function labels; control flow and local variables are not implemented yet.
 
-Abstract Syntax Tree (AST) Construction: Parsing TinyC code and building an AST.
-Semantic Analysis: Checking the AST for semantic correctness, including type checking and scoping rules.
-Code Generation/Verification Conditions:
-Option 3a: Generating MIPS assembly code from the AST.
-Option 3b: Generating logical formulas for verifying the correctness of TinyC programs.
-You can choose to implement either the code generation (3a) or verification conditions (3b). Implementing both will grant bonus points.
+## Project structure
 
-Project Structure
+```
+src/tinycc/
+  implementation/   my code: AST classes, ASTFactory, semantic analysis, code generation
+    expression/     binary, unary, call and primary expressions
+    statement/      block, if, while, return, declaration, ... statements
+    type/           int/char/void base types, pointers, function types
+  parser/           lexer and parser (course framework)
+  diagnostic/       error reporting (course framework)
+  driver/           command-line entry point (course framework)
+  mipsasmgen/       MIPS assembly builder (course framework)
+  logic/            formula classes for verification (course framework)
+```
 
-The repository is structured into several Java packages:
+## Running
 
-tinycc.driver: Manages the translation process and command-line arguments.
-tinycc.parser: Contains the lexer and parser for TinyC.
-tinycc.diagnostic: Handles error messages and warnings.
-tinycc.mipsasmgen: Responsible for generating MIPS assembly code (Phase 3a).
-tinycc.logic: Generates logical formulas for verification (Phase 3b).
-tinycc.implementation: This is where your implementation resides. The Compiler class in this package drives the entire compilation process.
+The driver depends on the course's Z3 and MARS libraries, which are not included
+here. With `com.microsoft.z3.jar` in `libs/` and the sources compiled to `bin/`:
 
-Running the Compiler
+```bash
+scripts/tinycc <file.c>
+```
 
-To compile a TinyC program, use the following command:
+## Tech
 
-java -cp target/tinyc-compiler-java-1.0-SNAPSHOT.jar tinycc.driver.Compiler <source-file>
-Where <source-file> is the TinyC file you wish to compile.
-
-Testing
-
-Tests are included to verify the correctness of your implementation. Run the tests using Maven: "mvn test"
+Java, compiler construction (parsing, ASTs, scopes and declaration checks), MIPS assembly

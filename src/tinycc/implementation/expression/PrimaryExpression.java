@@ -1,5 +1,4 @@
 package tinycc.implementation.expression;
-import mars.assembler.TokenList;
 import tinycc.parser.Token;
 import tinycc.parser.TokenKind;
 
