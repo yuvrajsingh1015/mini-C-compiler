@@ -1,4 +1,4 @@
-# TinyC Compiler
+# Mini C Compiler
 
 A compiler front end for **TinyC**, a small subset of C, written in Java.
 
